@@ -5,8 +5,6 @@
 define('BOT_TOKEN', '1-2-3-4-token-here');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 define('RSS_URL', 'http://feeds.feedburner.com/tweakers/');
-define('CRON_SYNC_TIME', '360'); // The time in seconds between every time this script is executed.
-// If your cronjob is set to run every 5 minutes this would make 5*60=300.
 define('CHANNEL_NAME', '@TweakersChannel'); // The channel name. Must be in format @channelusername.
 // Bot must be admin on channel.
 define('JSON_FILE', './ids.json');
@@ -152,7 +150,6 @@ foreach ($rss->item as $item) {
 <a href="' . $item->link . '">Ga naar het volledige artikel</a>';
 
 //       print $messageText;
-      apiRequest("sendMessage", array('chat_id' => "@Tweakers", 'text' => $messageText, 'parse_mode' => "html"));
       apiRequest("sendMessage", array('chat_id' => CHANNEL_NAME, 'text' => $messageText, 'parse_mode' => "html"));
     }
 }
